@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="medium">
+      <ion-icon name="close" style="float: right; width: 40px; height: 40px; margin-right: 5px;" (click)="dismiss()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <br>
+  <h1 id="ueberschrift">Hinzufügen</h1>
+
+  <br> <br> <br>
+
+  <table style="border: none;" id="table">
+    <tr>
+      <th><label for="i_bezeichnung">Bezeichnung</label></th>
+      <td><input name="i_bezeichnung" type="text" (input)="setBezeichnung($event.target.value)"></td>
+    </tr>
+    <br>
+    <tr>
+      <th><label for="i_fuellstand">Einheit</label></th>
+      <td><input name="i_fuellstand" type="text" (input)="setEinheit($event.target.value)"></td>
+    </tr>
+    <br>
+    <tr>
+      <th><label for="i_min">Kritisch</label></th>
+      <td><input name="i_min" type="number" (input)="setKritisch($event.target.value)"></td>
+    </tr>
+    <br>
+    <tr>
+      <th><label for="i_max">Maximum</label></th>
+      <td><input name="i_max" type="number" (input)="setMax($event.target.value)"></td>
+    </tr>
+    <br>
+    <tr>
+      <th><label for="i_min">Kategorie</label></th>
+      <td>
+        <select (input)="setKategorie($event.target.value)">
+        <option value="getraenk" >Getränk</option>
+        <option value="zutat" >Zutat</option>
+      </select>
+    </td>
+
+  </table>
+
+  <br>
+
+  <div id="speichernButton">
+    <ion-button (click)="speichern()" color="light" [disabled]="!validate()">
+      <ion-label>Speichern</ion-label>
+    </ion-button>
+  </div>
+  
+</ion-content>

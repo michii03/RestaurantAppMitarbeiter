@@ -1,0 +1,46 @@
+ion-content {
+
+    #speichernButton {
+        position: relative;
+        margin: 0px auto 0px auto;
+        max-width: min-content;
+    }
+
+    #ueberschrift {
+        text-align: center;
+        color: #707070
+    }
+
+    // #loeschen {
+    //     position: relative;
+    //     height: 25px;
+    //     width: 25%;
+    //     transform: translate(150%, 0%);
+    // }
+
+    #table {
+        margin: 0px auto 0px auto;
+
+
+        ion-button {
+            width: 100px;
+            height: 20px;
+        }
+
+        th {
+            text-align: left;
+            width: 125px;
+            color: #707070;
+        }
+
+        td {
+            width: 100px;
+
+            input {
+                // border: none;
+                width: 100px;
+            }
+        }
+    }
+
+}

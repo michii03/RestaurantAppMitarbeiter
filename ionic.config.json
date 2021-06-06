@@ -1,0 +1,7 @@
+{
+  "name": "KochApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

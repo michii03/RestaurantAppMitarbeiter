@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Bestellung</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div id="bestellungen-div">
+    <div *ngFor="let b of bestellungen; let i = index">
+
+      <ion-card [ngStyle]="{ 'background-color': 'white' }" routerLink='produkte' queryParams="{{ b.id }}">
+        <ion-card-header>
+          <ion-card-subtitle>{{ getProzent(i)*100 | number:'1.0-0' }} % zubereitet</ion-card-subtitle>
+          <ion-card-title>
+            Bestellung: {{ b.id }}
+          </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-progress-bar color="success" value="{{ getProzent(i) }}"></ion-progress-bar>
+        </ion-card-content>
+      </ion-card>
+
+    </div>
+  </div>
+
+
+</ion-content>

@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="medium">
+    <ion-icon name="close" style="float: right; width: 40px; height: 40px; margin-right: 5px;" (click)="dismiss()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1 id="ueberschrift">Bearbeiten</h1>
+
+  <hr style="background-color: #707070; width: 60%;"/> <br><br>
+
+  <table style="border: none;" id="table">
+    <tr>
+      <th><label for="i_bezeichnung">Bezeichnung</label></th>
+      <td><input name="i_bezeichnung" type="text" [value]="item.bezeichnung" (input)="setBezeichnung($event.target.value)"></td>
+    </tr>
+    <br>
+    <tr>
+      <th><label for="i_fuellstand">Füllstand</label></th>
+      <td><input name="i_fuellstand" type="number" [value]="item.fuellstand" (input)="setFuellstand($event.target.value)"></td>
+    </tr>
+    <br>
+    <tr>
+      <th><label for="i_min">Kritisch</label></th>
+      <td><input name="i_min" type="number" [value]="item.min" (input)="setMin($event.target.value)"></td>
+    </tr>
+    <br>
+    <tr>
+      <th><label for="i_max">Maximum</label></th>
+      <td><input name="i_max" type="number" [value]="item.max" (input)="setMax($event.target.value)"></td>
+    </tr>
+    <br><br>
+    <tr>
+      <td>
+        <ion-button (click)="speichern()" id="speichern" color="light">
+          <ion-label>Speichern</ion-label>
+        </ion-button>
+      </td>
+      <td>
+        <ion-button (click)="delete()" id="loeschen" color="light">
+          <ion-label>Löschen</ion-label>
+        </ion-button>
+      </td>
+    </tr>
+
+  </table>
+  
+
+  
+</ion-content>
