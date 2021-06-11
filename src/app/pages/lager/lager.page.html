@@ -9,7 +9,7 @@
 
 <ion-content>
 
-  <!-- GETRÄNKE -->
+  
 
 
   <h3 style="margin-left: 25px; color: #707070;">Filter</h3>
@@ -17,6 +17,7 @@
     <ion-searchbar [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
   </div>
 
+  <!-- GETRÄNKE -->
 
   <div [ngStyle]="{'opacity': getraenkeCollapse == true ? '0.75' : '1' }" class="ueberschrift-lager">
     <span >GETRÄNKE</span>
@@ -99,7 +100,7 @@
   <!-- SPEISEN -->
 
   <div [ngStyle]="{'opacity': zutatenCollapse == true ? '0.75' : '1' }" class="ueberschrift-lager">
-    <span>ZUTATEN</span>
+    <span >ZUTATEN</span>
     <div *ngIf="zutatenCollapse == false">
       <svg (click)="zutatenCollapse = !zutatenCollapse" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-down" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z"/>
@@ -112,49 +113,63 @@
     </div>
   </div>
 
+  
+
   <div *ngIf="zutatenCollapse == false">
-    <div id="content-zutaten">
+    <div id="content-zutat">
       <div *ngFor="let item of lager | filter:filterTerm ; let i = index" >
         <div *ngIf="item.kategorie == 'zutat'">
-        <ion-card [ngStyle]="{ 'background-color': 'white' }">
-          <ion-card-header>
-            <ion-card-subtitle  >
-              <span>Einheit: {{ item.einheit }}</span>
-              <span (click)="openInfoProdukte(item)" style="float: right; width: 25px; height: 25px; margin-right: 7px;">
-  
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
-              </svg>
-  
-            </span>
-            </ion-card-subtitle>
-            <ion-card-title style="font-size: 25px;">
-              {{ item.bezeichnung }} 
-              <div class="addDelButtonsDiv">
-                <div class="delButton">
-                  <ion-icon name="remove" (click)="delButton(item)"></ion-icon>
-                </div>
-                <div class="showLagerbestand">
-                  <input readonly type="text" [value]="item.fuellstand" (input)="setFuellstand($event.target.value, item)">
-                  <!-- <input type="text" [ngModel]="fuellstand(item)" /> -->
-                </div>
-                <div class="addButton">
-                  <ion-icon name="add" (click)="addButton(item)"></ion-icon>
-                </div>
-              </div>
-            </ion-card-title>
-          </ion-card-header>
-  
-          <ion-card-content>
-            <div *ngIf="isCritical(item) == 'danger'"><ion-progress-bar color="danger" value="{{ getPercentage(item) }}"></ion-progress-bar></div>
-            <div *ngIf="isCritical(item) == 'warning'"><ion-progress-bar color="warning" value="{{ getPercentage(item) }}"></ion-progress-bar></div>
-            <div *ngIf="isCritical(item) == 'success'"><ion-progress-bar color="success" value="{{ getPercentage(item) }}"></ion-progress-bar></div>
-  
-            <span style="float: left; margin: 5px;">Kritisch: {{ item.min }}</span>
-            <span style="float: right; margin: 5px;">Max: {{ item.max }}</span>
-            <br>
-          </ion-card-content>
-        </ion-card>
+          <ion-item-sliding>
+            <ion-item>
+              <ion-label>
+                <ion-card [ngStyle]="{ 'background-color': 'white' }">
+                  <ion-card-header>
+                    <ion-card-subtitle  >
+                      <span>Einheit: {{ item.einheit }}</span>
+                      <span (click)="openInfoProdukte(item)" style="float: right; width: 25px; height: 25px; margin-right: 7px;">
+          
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                        <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                      </svg>
+          
+                    </span>
+                    </ion-card-subtitle>
+                    <ion-card-title style="font-size: 25px;">
+                      {{ item.bezeichnung }} 
+                      <div class="addDelButtonsDiv">
+                        <div class="delButton">
+                          <ion-icon name="remove" (click)="delButton(item)"></ion-icon>
+                        </div>
+                        <div class="showLagerbestand">
+                          <input style="user-select: none;" readonly="true" type="text" [value]="item.fuellstand" (input)="setFuellstand($event.target.value, item)">
+                          <!-- <input type="text" [ngModel]="fuellstand(item)" /> -->
+                        </div>
+                        <div class="addButton">
+                          <ion-icon name="add" (click)="addButton(item)"></ion-icon>
+                        </div>
+                      </div>
+                    </ion-card-title>
+                  </ion-card-header>
+          
+                  <ion-card-content>
+                    <div *ngIf="isCritical(item) == 'danger'"><ion-progress-bar color="danger" value="{{ getPercentage(item) }}"></ion-progress-bar></div>
+                    <div *ngIf="isCritical(item) == 'warning'"><ion-progress-bar color="warning" value="{{ getPercentage(item) }}"></ion-progress-bar></div>
+                    <div *ngIf="isCritical(item) == 'success'"><ion-progress-bar color="success" value="{{ getPercentage(item) }}"></ion-progress-bar></div>
+          
+                    <span style="float: left; margin: 5px;">Kritisch: {{ item.min }}</span>
+                    <span style="float: right; margin: 5px;">Max: {{ item.max }}</span>
+                    <br>
+                  </ion-card-content>
+                </ion-card>
+              </ion-label>
+            </ion-item>
+        
+            <ion-item-options side="end">
+              <ion-item-option color="danger" expandable (click)="delete(item)">
+                Löschen
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
       </div>
       </div>
     </div>

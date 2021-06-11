@@ -15,27 +15,38 @@ export class AppComponent {
     {
       link: "/home",
       icon: "home",
-      label: "Home"
+      label: "Home",
+      color: "danger"
     },
     {
       link: "/bestellung",
       icon: "clipboard",
-      label: "Bestellung"
+      label: "Bestellung",
+      color: "medium"
     },
     {
       link: "/kochbuch",
       icon: "bookmarks",
-      label: "Kochbuch"
+      label: "Kochbuch",
+      color: "danger"
     },
     {
       link: "/lager",
       icon: "basket",
-      label: "Lager"
+      label: "Lager",
+      color: "medium"
     },
     {
       link: "/analyse",
       icon: "podium",
-      label: "Analyse"
+      label: "Analyse",
+      color: "danger"
+    },
+    {
+      link: "/chat",
+      icon: "chatbubbles",
+      label: "Chat",
+      color: "medium"
     }
   ];
 

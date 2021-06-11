@@ -9,8 +9,8 @@
       <ion-list>
 
         <ion-menu-toggle *ngFor="let page of pages">
-          <ion-item routerLink='{{ page.link }}'>
-            <ion-icon name='{{ page.icon }}' slot="start"></ion-icon>
+          <ion-item routerLink='{{ page.link }}' >
+            <ion-icon name='{{ page.icon }}' slot="start" color='{{ page.color }}'></ion-icon>
             <ion-label>{{ page.label }}</ion-label>
           </ion-item>
         </ion-menu-toggle>
