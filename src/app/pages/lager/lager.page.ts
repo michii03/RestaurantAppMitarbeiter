@@ -5,7 +5,6 @@ import { AddProduktPage } from '../lager/add-produkt/add-produkt.page';
 import { InfoProduktPage } from './info-produkt/info-produkt.page';
 import { MessageClient } from "cloudmailin";
 import { timeout } from 'rxjs/operators';
-import nodemailer from 'nodemailer';
 
 @Component({
   selector: 'app-lager',
@@ -143,54 +142,7 @@ export class LagerPage implements OnInit {
     return item.fuellstand / item.max;
   }
 
-    
-  async sendMail() {
-
-
-    let transporter = await nodemailer.createTransport({
-      host: "send.one.com",
-      port: 587,
-      secure: false,
-      auth: {
-        user: "stock-images@saigon-bikes.com",
-        pass: "StockImages123456",
-      },
-    });
-    // provide transporter with information and send mail
-    let info = await transporter.sendMail({
-      from: "stock-images@saigon-bikes.com",
-      to: "michael.holmes@edvschule-plattling.de",
-      subject: "subject",
-      text: "text",
-      html: "data",
-    });
-  }
-
-
-//   async sendMail(itemName: String) {
-//   let testAccount = await nodemailer.createTestAccount();
-
-//   // create reusable transporter object using the default SMTP transport
-//   let transporter = nodemailer.createTransport({
-//     host: "smtp.ethereal.email",
-//     port: 587,
-//     secure: false, // true for 465, false for other ports
-//     auth: {
-//       user: testAccount.user, // generated ethereal user
-//       pass: testAccount.pass, // generated ethereal password
-//     },
-//   });
-
-//   // send mail with defined transport object
-//   let info = await transporter.sendMail({
-//     from: '"Fred Foo 👻" <foo@example.com>', // sender address
-//     to: "bar@example.com, baz@example.com", // list of receivers
-//     subject: "Hello ✔", // Subject line
-//     text: "Hello world?", // plain text body
-//     html: "<b>Hello world?</b>", // html body
-//   });
-// }
-
+  
   isCritical(item: lagerProdukt): string {
     if (item.fuellstand <= item.min) {
 
