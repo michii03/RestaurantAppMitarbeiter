@@ -1,7 +1,7 @@
 export interface produkt {
     id          : number;
     bezeichnung : string;
-    zubereitet  : boolean;
+    zubereitet  : string;
 }
 
 export interface lagerProdukt {

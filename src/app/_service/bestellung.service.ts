@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 import { bestellung } from '../_interfaces/bestellung';
 
 @Injectable({
@@ -15,7 +14,6 @@ export class BestellungService {
   /**
    * Host URL
    */
-  bestellungsPositionUrl = 'http://localhost:3000/bestellungsPosition';
   bestellungUrl = 'http://localhost:3000/bestellung';
 
   /**
@@ -28,13 +26,16 @@ export class BestellungService {
   }
 
   /**
-    * Alle Bestellungen mit deren zugehörigen Produkten
-    * @returns result;
-    */
-  getAllBestellungen() : Observable<bestellung[]> {
-    const url = `${this.bestellungUrl}/bestellungMitProdukte`;
+   * Alle Produkte die als nicht zubereitet markiert sind werden geliefert
+   * @returns nicht zubereiteten Produkte
+   */
+  
+  getBestellungen(): Observable<bestellung[]>{
+    const url = `${this.bestellungUrl}/BestellungMitPositionen`;
     return this.httpClient.get<bestellung[]>(url);
   }
+
+  
 }
 
 

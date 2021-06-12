@@ -13,8 +13,9 @@
     <div *ngFor="let p of produkte; let i = index">
 
       <div *ngIf="p.zubereitet == false">
-        <ion-card [ngStyle]="{'background-color': isAusgewaehlt(i) == true ? '#1b7e43' : 'white' }"
-                  [ngStyle]="{'padding-bottom': expandedid == p.id ? '100px' : '0px' }" style="transition: 500ms;">
+        <ion-card [ngStyle]="{'background-color': isAusgewaehlt(i) == true ? '#1b7e43' : 'white' }" 
+                  style="transition: 500ms;">
+                  <!-- [ngStyle]="{'padding-bottom': expandedid == p.id ? '100px' : '0px' }" -->
           <ion-card-header>
             <ion-card-title>
               <p (click)="setExpanded(p.id)" [ngStyle]="{'color': isAusgewaehlt(i) == true ? 'white' : 'black' }">{{ p.bezeichnung }}</p>

@@ -18,32 +18,34 @@ export class ProduktePage implements OnInit {
         {
           id: 1,
           bezeichnung: "Pizza Peperoni",
-          zubereitet: true
+          zubereitet: "true"
         },
         {
           id: 2,
           bezeichnung: "Pizza Magaritha",
-          zubereitet: false
+          zubereitet: "false"
         },
         {
           id: 3,
           bezeichnung: "Pizza Magaritha",
-          zubereitet: false
+          zubereitet: "false"
         }
       ];
 
+  // produkte : produkt[] = [];
+
   ausgewaehlt: number[] = new Array();
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router) { 
+  }
 
   ngOnInit() {
-    //this.produkte = this.router.getCurrentNavigation().extras.state.produkte; 
-    // this.route.queryParams.subscribe(params => {
-    //   if (params) {
-    //     this.bestellid = params[0];
-    //   }
-    // });
-    // this.expandedid = null;
+    this.route.queryParams.subscribe(params => {
+      if (params) {
+        this.bestellid = params[0];
+      }
+    });
+    this.expandedid = null;
   }
 
   setExpanded(id : number) : void {
@@ -59,7 +61,7 @@ export class ProduktePage implements OnInit {
     this.ausgewaehlt.forEach(i => {
       this.produkte.forEach(p => {
         if (i == p.id) {
-          p.zubereitet = true;
+          p.zubereitet = "true";
         }
       });
     });

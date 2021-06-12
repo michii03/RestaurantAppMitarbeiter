@@ -16,7 +16,7 @@ export class AppComponent {
       link: "/home",
       icon: "home",
       label: "Home",
-      color: "danger"
+      color: "medium"
     },
     {
       link: "/bestellung",
@@ -28,7 +28,7 @@ export class AppComponent {
       link: "/kochbuch",
       icon: "bookmarks",
       label: "Kochbuch",
-      color: "danger"
+      color: "medium"
     },
     {
       link: "/lager",
@@ -40,7 +40,7 @@ export class AppComponent {
       link: "/analyse",
       icon: "podium",
       label: "Analyse",
-      color: "danger"
+      color: "medium"
     },
     {
       link: "/chat",
