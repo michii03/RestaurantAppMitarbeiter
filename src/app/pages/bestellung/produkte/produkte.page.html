@@ -12,7 +12,7 @@
   <div id="produkte-div">
     <div *ngFor="let p of produkte; let i = index">
 
-      <div *ngIf="p.zubereitet == false">
+      <div *ngIf="p.zubereitet == 'false'">
         <ion-card [ngStyle]="{'background-color': isAusgewaehlt(i) == true ? '#1b7e43' : 'white' }" 
                   style="transition: 500ms;">
                   <!-- [ngStyle]="{'padding-bottom': expandedid == p.id ? '100px' : '0px' }" -->
@@ -37,7 +37,7 @@
     </div>
 
     <div *ngFor="let p of produkte; let i = index">
-      <div *ngIf="p.zubereitet == true">
+      <div *ngIf="p.zubereitet == 'true'">
         <ion-card [ngStyle]="{'background-color': '#d1d1d1'}" style="opacity: 0.75;">
           <ion-card-header>
             <ion-card-title style="color: #707070;">

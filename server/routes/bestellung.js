@@ -23,6 +23,15 @@ router.get("/", async (req, res) => {
     res.status(200).send(result);
 });
 
+router.get("/BestellungMitPositionen/:id", async (req, res) => {
+    const result = await bestellungManagement.getProdukteFromBestellung(req.params.id);
+    if(Object.keys(result).length == 0){
+        res.status(404).send(`ID not found`);
+        return;
+    }
+    res.status(200).send(result);
+});
+
 router.get("/BestellungMitPositionen", async (req, res) => {
     const result = await bestellungManagement.getBestellungen();
     if(Object.keys(result).length == 0){
@@ -31,6 +40,8 @@ router.get("/BestellungMitPositionen", async (req, res) => {
     }
     res.status(200).send(result);
 });
+
+
 
 /**
  * Bei Aufruf der Route {Host}/bestellung/{ID} wird die Bestellungen mit der gesuchten ID geliefert

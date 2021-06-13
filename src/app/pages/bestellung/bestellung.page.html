@@ -12,7 +12,8 @@
   <div id="bestellungen-div">
     <div *ngFor="let b of bestellungen; let i = index">
 
-      <ion-card [ngStyle]="{ 'background-color': 'white'  }" routerLink='produkte' queryParams="{{ b.id }}">
+      <!-- <ion-card [ngStyle]="{ 'background-color': 'white'  }" routerLink='produkte' queryParams="{{ b.id }}"> -->
+        <ion-card [ngStyle]="{ 'background-color': 'white'  }" (click)="navigate(b.id)">
         <ion-card-header>
           <ion-card-subtitle>{{ getProzent(i)*100 | number:'1.0-0' }} % zubereitet</ion-card-subtitle>
           <div style="float: right"><ion-datetime value="{{ b.time }}" displayFormat="HH:mm"></ion-datetime></div>

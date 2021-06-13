@@ -2,6 +2,7 @@ export interface produkt {
     id          : number;
     bezeichnung : string;
     zubereitet  : string;
+    link        : string;
 }
 
 export interface lagerProdukt {

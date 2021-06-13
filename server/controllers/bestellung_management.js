@@ -12,6 +12,11 @@ class BestellungManagement{
         return bestellung;
     }
 
+    getProdukteFromBestellung = async (id) => {
+        const bestellung = await bestellungService.getProdukteFromBestellung(id);
+        return bestellung;
+    }
+
     getSingleBestellung = async (id) => {
         const bestellung = await bestellungService.getSingleBestellung(id);
         return bestellung;

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { produkt } from '../../../_interfaces/produkte';
 import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
+import { produkt } from 'src/app/_interfaces/produkte';
+import { BestellungService } from '../../../_service/bestellung.service';
 
 @Component({
   selector: 'app-produkte',
@@ -11,41 +12,29 @@ import { Router } from '@angular/router'
 
 
 export class ProduktePage implements OnInit {
-  bestellid   : number;
-  expandedid  : number;
 
-  produkte : produkt[] = [
-        {
-          id: 1,
-          bezeichnung: "Pizza Peperoni",
-          zubereitet: "true"
-        },
-        {
-          id: 2,
-          bezeichnung: "Pizza Magaritha",
-          zubereitet: "false"
-        },
-        {
-          id: 3,
-          bezeichnung: "Pizza Magaritha",
-          zubereitet: "false"
-        }
-      ];
-
-  // produkte : produkt[] = [];
-
-  ausgewaehlt: number[] = new Array();
-
-  constructor(private route: ActivatedRoute, private router: Router) { 
+  constructor(private route: ActivatedRoute, private router: Router, private bestellungService: BestellungService) { 
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      if (params) {
-        this.bestellid = params[0];
-      }
-    });
-    this.expandedid = null;
+    this.produkte = this.router.getCurrentNavigation().extras.state.produkte;
+  }
+
+  bestellid   : number;
+  expandedid  : number = null;
+
+  produkte    : produkt[] = [];
+  ausgewaehlt : number[] = [];
+
+  
+
+  // getProdukte(): void {
+  //   this.bestellungService.getProdukteFromBestellung(this.bestellid).subscribe(item => this.setProdukte(item));
+  // }
+
+  setProdukte(item: any): void {
+    console.log(item);
+    this.produkte = item;
   }
 
   setExpanded(id : number) : void {

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { bestellung } from '../_interfaces/bestellung';
+import { produkt } from '../_interfaces/produkte';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,11 @@ export class BestellungService {
   getBestellungen(): Observable<bestellung[]>{
     const url = `${this.bestellungUrl}/BestellungMitPositionen`;
     return this.httpClient.get<bestellung[]>(url);
+  }
+
+  getProdukteFromBestellung(id : number): Observable<produkt[]>{
+    const url = `${this.bestellungUrl}/BestellungMitPositionen/`+id;
+    return this.httpClient.get<produkt[]>(url);
   }
 
   

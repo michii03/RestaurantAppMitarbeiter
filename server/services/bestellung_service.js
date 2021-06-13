@@ -15,7 +15,7 @@ class BestellungService{
         const bestellungen = await this.runQuery("SELECT rb.id, rb.time FROM restaurant_bestellung rb");
 
         for (let i = 0; i < bestellungen.length; i++) {
-            const positionen = await this.runQuery("SELECT rp.id, rp.name AS bezeichnung, rbp.zubereitet "+
+            const positionen = await this.runQuery("SELECT rp.id, rp.name AS bezeichnung, rbp.zubereitet, rp.link "+
                                                    "FROM restaurant_bestellungsPosition rbp "+
                                                    "INNER JOIN restaurant_produkt rp ON ( rbp.produktNr = rp.id ) "+
                                                    "WHERE rbp.bestellungsNr = "+ bestellungen[i].id +";");
@@ -23,6 +23,15 @@ class BestellungService{
         }
         
         return bestellungen;
+    }
+
+    getProdukteFromBestellung = async (id) => {
+        const positionen = await this.runQuery("SELECT rp.id, rp.name AS bezeichnung, rbp.zubereitet, rp.link "+
+                                                   "FROM restaurant_bestellungsPosition rbp "+
+                                                   "INNER JOIN restaurant_produkt rp ON ( rbp.produktNr = rp.id ) "+
+                                                   "WHERE rbp.bestellungsNr = "+ id +";");
+        
+        return positionen;
     }
 
     /**

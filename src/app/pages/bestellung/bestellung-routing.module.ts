@@ -6,11 +6,8 @@ import { BestellungPage } from './bestellung.page';
 const routes: Routes = [
   {
     path: '',
-    component: BestellungPage
-  },
-  {
-    path: 'produkte',
-    loadChildren: () => import('./produkte/produkte.module').then( m => m.ProduktePageModule )
+    component: BestellungPage,
+    pathMatch: 'full'
   }
 ];
 

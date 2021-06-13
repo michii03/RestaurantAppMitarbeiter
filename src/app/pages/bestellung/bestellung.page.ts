@@ -18,69 +18,24 @@ export class BestellungPage implements OnInit {
     this.getBestellungen();
   }
 
-  // bestellungen: bestellung[] = [
-  //   {
-  //     id      : 1,
-  //     zeit    : new Date(),
-  //     produkte: [
-  //       {
-  //         id: 1,
-  //         bezeichnung: "Pizza Peperoni",
-  //         zubereitet: true
-  //       },
-  //       {
-  //         id: 2,
-  //         bezeichnung: "Pizza Magaritha",
-  //         zubereitet: false
-  //       },
-  //       {
-  //         id: 3,
-  //         bezeichnung: "Pizza Magaritha",
-  //         zubereitet: false
-  //       }
-        
-  //     ]
-  //   },
-  //   {
-  //     id: 2,
-  //     zeit: new Date(),
-  //     produkte: [
-  //       {
-  //         id: 1,
-  //         bezeichnung: "Pizza Peperoni",
-  //         zubereitet: true
-  //       },
-  //       {
-  //         id: 2,
-  //         bezeichnung: "Pizza Magaritha",
-  //         zubereitet: false
-  //       },
-  //       {
-  //         id: 3,
-  //         bezeichnung: "Pizza Magaritha",
-  //         zubereitet: false
-  //       }
-  //     ]
-  //   }
-  // ];
+  bestellungen  : bestellung[] = [];
+  ausgewaehlt   : number[] = [];
 
-  bestellungen: bestellung[] = [];
+  navigate(id : number) : void {
+    this.router.navigateByUrl("/produkte", {state: {produkte: this.getProdukte(id)}});
+  }
 
-  ausgewaehlt: number[] = [];
-
-
-  
+  getProdukte(id: number) {
+    for(let i = 0; i < this.bestellungen.length; i++) {
+      if (id == this.bestellungen[i].id) {
+        return this.bestellungen[i].produkte;
+      }
+    }
+  }
 
   getBestellungen() : void {
     this.bestellungService.getBestellungen().subscribe(item => this.bestellungen = item);
   }
-
-  // produktePage(index : number) : void {
-  //   console.log("produktePageSwitch");
-  //   let produkte : produkt[];
-  //   produkte = this.bestellungen[index].produkte;
-  //   this.router.navigateByUrl('produkte/' + produkte);
-  // }
 
   getTime(time: string) {
     return new Date(time);
