@@ -5,6 +5,8 @@ import { AddProduktPage } from '../lager/add-produkt/add-produkt.page';
 import { InfoProduktPage } from './info-produkt/info-produkt.page';
 import { MessageClient } from "cloudmailin";
 import { timeout } from 'rxjs/operators';
+import { MailService } from '../../_service/mail.service';
+import { mailLager } from 'src/app/_interfaces/mail';
 
 @Component({
   selector: 'app-lager',
@@ -72,10 +74,17 @@ export class LagerPage implements OnInit {
   percentage: number;
   filterTerm: string = "";
 
-  constructor(public modalController: ModalController, public alertController: AlertController,) { }
+  constructor(public modalController: ModalController, public alertController: AlertController, public mailService: MailService) { }
 
   ngOnInit() {
     console.log(this.editedProdukt);
+  }
+
+  sendMail(item: lagerProdukt) : void {
+    item.fuellstand = item.max;
+
+    let mailDaten: mailLager = {bezeichnung: item.bezeichnung};
+    this.mailService.sendmail(mailDaten);
   }
 
   async openAddProdukte() {
@@ -142,10 +151,12 @@ export class LagerPage implements OnInit {
     return item.fuellstand / item.max;
   }
 
+  hasToSendMail(item: lagerProdukt) : boolean {
+    return item.fuellstand <= item.min;
+  }
   
   isCritical(item: lagerProdukt): string {
     if (item.fuellstand <= item.min) {
-
       return "danger";
     }
 
@@ -162,10 +173,37 @@ export class LagerPage implements OnInit {
     item.fuellstand++;
   }
 
-  delButton(item: lagerProdukt) {
+  async delButton(item: lagerProdukt) {
     if (this.getPercentage(item) == 0) return;
     item.fuellstand--;
+
+    if (this.hasToSendMail(item)) {
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'Lagerbestand niedrig!',
+        message: 'Wollen Sie eine Bestellung aufgeben?',
+        buttons: [
+            {
+                text: 'Abbrechen',
+                role: 'abbrechen'
+            },
+            {
+                text: 'Ja',
+                role: 'bestaetigen'
+            }
+        ]
+      });
+
+      await alert.present();
+
+      const { role } = await alert.onDidDismiss();
+        if(role == "bestaetigen"){
+            this.sendMail(item);
+        }
+    }
   }
+
+  
 
   setFuellstand(value: any, item: lagerProdukt) {
     item.fuellstand = value as number;

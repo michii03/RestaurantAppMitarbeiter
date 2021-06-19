@@ -10,15 +10,18 @@
 <ion-content>
 
   <div id="produkte-div">
-    <div *ngFor="let p of produkte; let i = index">
+    <!-- <div *ngFor="let p of produkte; let i = index">
 
       <div *ngIf="p.zubereitet == 'false'">
         <ion-card [ngStyle]="{'background-color': isAusgewaehlt(i) == true ? '#1b7e43' : 'white' }" 
-                  style="transition: 500ms;">
-                  <!-- [ngStyle]="{'padding-bottom': expandedid == p.id ? '100px' : '0px' }" -->
+                  style="transition: 500ms; height: min-content;">
           <ion-card-header>
             <ion-card-title>
-              <p (click)="setExpanded(p.id)" [ngStyle]="{'color': isAusgewaehlt(i) == true ? 'white' : 'black' }">{{ p.bezeichnung }}</p>
+
+              <p [ngStyle]="{'color': isAusgewaehlt(i) == true ? 'white' : 'black' }">
+                <img src="{{ p.link }}" alt="BILD" height="50px" width="50px" style="float: left; border-radius: 100%; transform: translateY(-30%)">
+                <span style="float: left; margin-left: 20px;">{{ p.bezeichnung }}</span>
+              </p>
 
 
               <div class="auswaehlen" *ngIf="isAusgewaehlt(i) == true">
@@ -29,7 +32,30 @@
                 <ion-icon name="radio-button-off" style="font-size: 25px; color: black;" (click)="addAusgewaehlt(p.id, i)"></ion-icon>
               </div>
 
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </div>
+    </div> -->
+
+    <div *ngFor="let p of produkte; let i = index">
+      <div *ngIf="p.zubereitet == 'false'">
+        <ion-card [ngStyle]="{'background-color': isAusgewaehlt(i) == true ? '#1b7e43' : 'white'}" style="opacity: 0.75;">
+          <ion-card-header>
+            <ion-card-title style="color: #707070;">
+              <img src="{{ p.link }}" alt="BILD" height="40px" width="40px" style="float: left; border-radius: 100%; transform: translateY(-20%)">
+              <span [ngStyle]="{'color': isAusgewaehlt(i) == true ? 'white' : 'black' }" style="margin-left: 20px;">{{ p.bezeichnung }}</span>
               
+
+              <div class="auswaehlen" *ngIf="isAusgewaehlt(i) == true">
+                <ion-icon name="radio-button-on" style="font-size: 25px; color: white;" (click)="delAusgewaehlt(p.id, i)">
+                </ion-icon>
+              </div>
+              <div class="auswaehlen" *ngIf="isAusgewaehlt(i) == false">
+                <ion-icon name="radio-button-off" style="font-size: 25px; color: black;" (click)="addAusgewaehlt(p.id, i)">
+                </ion-icon>
+              </div>
+
             </ion-card-title>
           </ion-card-header>
         </ion-card>
@@ -41,7 +67,8 @@
         <ion-card [ngStyle]="{'background-color': '#d1d1d1'}" style="opacity: 0.75;">
           <ion-card-header>
             <ion-card-title style="color: #707070;">
-              {{ p.bezeichnung }}
+              <img src="{{ p.link }}" alt="BILD" height="40px" width="40px" style="float: left; border-radius: 100%; transform: translateY(-20%)">
+              <span style="margin-left: 20px;">{{ p.bezeichnung }}</span>
               <div class="auswaehlen">
                 <ion-icon name="radio-button-on" style="font-size: 25px; color: #707070;">
                 </ion-icon>
